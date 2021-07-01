@@ -9,10 +9,8 @@ jobs:
       - run:
           name: Ensure backend infrastructure exist
           command: |
-            aws cloudformation deploy \
-              --template-file template.yml \
-              --stack-name my-stack
-              --region ap-northeast-1
+            aws cloudformation create-stack --stack-name my-stack --template-body file://template.yml --capabilities "CAPABILITY_IAM" "CAPABILITY_NAMED_IAM" --region=ap-northeast-1
+
 workflows:
   my_workflow:
     jobs:
